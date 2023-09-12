@@ -12,10 +12,13 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
+    "@fullcalendar/bootstrap5": "^6.1.8",
     "@fullcalendar/core": "^6.1.8",
     "@fullcalendar/daygrid": "^6.1.8",
     "@fullcalendar/interaction": "^6.1.8",
     "@fullcalendar/list": "^6.1.8",
-    "@fullcalendar/timegrid": "^6.1.8"
+    "@fullcalendar/timegrid": "^6.1.8",
+    "bootstrap": "^5.3.1",
+    "bootstrap-icons": "^1.10.5"
   }
 }

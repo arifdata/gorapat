@@ -4,19 +4,23 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
 import './index.css'
+import bootstrap5Plugin from '@fullcalendar/bootstrap5';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 document.addEventListener('DOMContentLoaded', function () {
   const calendarEl = document.getElementById('calendar')
 
   const calendar = new Calendar(calendarEl, {
-    plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin],
+    plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin, bootstrap5Plugin],
+    themeSystem: 'bootstrap5',
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
     },
     navLinks: true, // can click day/week names to navigate views
-    editable: true,
+    editable: false,
     dayMaxEvents: true, // allow "more" link when too many events
     events: [
       {
@@ -27,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
         title: 'Long Event',
         start: '2023-09-07',
         end: '2023-09-10',
+        color: '#ff0000',
       },
       {
         groupId: 999,
