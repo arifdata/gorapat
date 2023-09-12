@@ -32,7 +32,6 @@ func main() {
 
 	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
 		e.Router.GET("/", func(c echo.Context) error {
-			//return c.String(http.StatusOK, "Haiyya")
 			a, _ := content.ReadFile("public/index.html")
 			return c.HTMLBlob(http.StatusOK, a)
 		} /* insert middleware here*/)
@@ -41,8 +40,6 @@ func main() {
 	})
 
 	app.OnBeforeServe().Add(func(e *core.ServeEvent) error {
-		// serves static files from the provided dir (if exists)
-		//e.Router.GET("/*", apis.StaticDirectoryHandler(os.DirFS("public/"), false))
 		e.Router.GET("/*", apis.StaticDirectoryHandler(publicFolder, false))
 
 		return nil

@@ -7,12 +7,14 @@ import './index.css'
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import translateID from '@fullcalendar/core/locales/id';
 
 document.addEventListener('DOMContentLoaded', function () {
   const calendarEl = document.getElementById('calendar')
 
   const calendar = new Calendar(calendarEl, {
     plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin, bootstrap5Plugin],
+    locale: translateID,
     themeSystem: 'bootstrap5',
     headerToolbar: {
       left: 'prev,next today',
@@ -72,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
       {
         title: 'Birthday Party',
         start: '2023-09-13T07:00:00',
+
       },
       {
         title: 'Click for Google',
@@ -79,6 +82,10 @@ document.addEventListener('DOMContentLoaded', function () {
         start: '2023-09-28',
       },
     ],
+    eventTimeFormat: {
+      hour: '2-digit',
+      minute: '2-digit',
+    },
   })
 
   calendar.render()
