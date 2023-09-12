@@ -15,9 +15,15 @@ document.addEventListener('DOMContentLoaded', function () {
   const calendar = new Calendar(calendarEl, {
     plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin, bootstrap5Plugin],
     locale: translateID,
+    displayEventEnd: true,
+    buttonIcons: {
+      prev: 'caret-left-fill',
+      next: 'caret-right-fill',
+      today: 'house-fill',
+    },
     themeSystem: 'bootstrap5',
     headerToolbar: {
-      left: 'prev,next today',
+      left: 'prev next today',
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
     },
