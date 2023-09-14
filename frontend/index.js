@@ -8,9 +8,21 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import translateID from '@fullcalendar/core/locales/id';
+import PocketBase from 'pocketbase';
 
-document.addEventListener('DOMContentLoaded', function () {
-  const calendarEl = document.getElementById('calendar')
+/*const pb = new PocketBase('http://127.0.0.1:8090');
+const resultList = await pb.collection('event').getList(1, 50, {
+  filter: 'created >= "2023-01-01 00:00:00"',
+});
+console.log(resultList.items[0]['created']);*/
+
+document.addEventListener('DOMContentLoaded', async function () {
+  const calendarEl = document.getElementById('calendar');
+  const pb = new PocketBase('http://127.0.0.1:8090');
+  const resultList = await pb.collection('event').getList(1, 50, {
+  filter: 'created >= "2023-01-01 00:00:00"',
+  });
+  const ev = resultList.items[0];
 
   const calendar = new Calendar(calendarEl, {
     plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin, bootstrap5Plugin],
@@ -30,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
     navLinks: true, // can click day/week names to navigate views
     editable: false,
     dayMaxEvents: true, // allow "more" link when too many events
-    events: [
+    /*events: [
       {
         title: 'All Day Event',
         start: '2023-09-01',
@@ -87,12 +99,19 @@ document.addEventListener('DOMContentLoaded', function () {
         url: 'http://google.com/',
         start: '2023-09-28',
       },
+    ],*/
+    events: [
+      {
+        title: ev['title'],
+        start: ev['start'],
+        end: ev['end'],
+      }
     ],
     eventTimeFormat: {
       hour: '2-digit',
       minute: '2-digit',
     },
-  })
+  });
 
-  calendar.render()
+  calendar.render();
 })
