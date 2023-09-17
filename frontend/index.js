@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   const calendarEl = document.getElementById('calendar');
   const pb = new PocketBase('http://127.0.0.1:8090');
   const resultList = await pb.collection('event').getList(1, 50, {
-  filter: 'start >= "2023-09-01 00:00:00"',
+    filter: 'start >= "2023-09-01 00:00:00"',
+    expand: 'ruang',
   });
   const ev = resultList.items;
   console.log(ev);
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       title: ev[i]['title'],
       start: ev[i]['start'],
       end: ev[i]['end'],
+      backgroundColor: ev[i]['expand']['ruang']['label_warna'],
     });
   };
 
@@ -38,7 +40,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     timeZone: 'UTC',
     plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin, bootstrap5Plugin],
     locale: translateID,
-    displayEventEnd: true,
+    //displayEventEnd: true,
     buttonIcons: {
       prev: 'caret-left-fill',
       next: 'caret-right-fill',
