@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   };
 
   const calendar = new Calendar(calendarEl, {
+    timeZone: 'UTC',
     plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin, bootstrap5Plugin],
     locale: translateID,
     displayEventEnd: true,
