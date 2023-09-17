@@ -17,12 +17,22 @@ const resultList = await pb.collection('event').getList(1, 50, {
 console.log(resultList.items[0]['created']);*/
 
 document.addEventListener('DOMContentLoaded', async function () {
+  var list_events = [];
   const calendarEl = document.getElementById('calendar');
   const pb = new PocketBase('http://127.0.0.1:8090');
   const resultList = await pb.collection('event').getList(1, 50, {
-  filter: 'created >= "2023-01-01 00:00:00"',
+  filter: 'start >= "2023-09-01 00:00:00"',
   });
-  const ev = resultList.items[0];
+  const ev = resultList.items;
+  console.log(ev);
+
+  for (var i = 0; i < ev.length; i++) {
+    list_events.push({
+      title: ev[i]['title'],
+      start: ev[i]['start'],
+      end: ev[i]['end'],
+    });
+  };
 
   const calendar = new Calendar(calendarEl, {
     plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin, bootstrap5Plugin],
@@ -100,13 +110,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         start: '2023-09-28',
       },
     ],*/
-    events: [
-      {
-        title: ev['title'],
-        start: ev['start'],
-        end: ev['end'],
-      }
-    ],
+    events: list_events,
     eventTimeFormat: {
       hour: '2-digit',
       minute: '2-digit',
