@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   const calendarEl = document.getElementById('calendar');
 
   const calendar = new Calendar(calendarEl, {
+    //contentHeight: 700,
+    aspectRatio: 1.8,
     timeZone: 'UTC',
     plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin, bootstrap5Plugin],
     locale: translateID,
