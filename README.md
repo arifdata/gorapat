@@ -1,2 +1,2 @@
 # gorapat
-Reservasi Ruang Rapat Using Golang (backend) &amp; Fullcalendar (frontend)
+Reservasi Ruang Rapat Menggunakan Golang (Pocketbase backend) &amp; Fullcalendar (frontend)
