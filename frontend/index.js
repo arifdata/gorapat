@@ -3,6 +3,7 @@ import interactionPlugin from '@fullcalendar/interaction'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
+import multimonthPlugin from '@fullcalendar/multimonth'
 import './index.css'
 import bootstrap5Plugin from '@fullcalendar/bootstrap5'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     //contentHeight: 700,
     aspectRatio: 1.8,
     timeZone: 'UTC',
-    plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin, bootstrap5Plugin],
+    plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin, bootstrap5Plugin, multimonthPlugin],
     locale: translateID,
     //displayEventEnd: true,
     buttonIcons: {
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     headerToolbar: {
       left: 'prev next today',
       center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
+      right: 'multiMonthYear,dayGridMonth,timeGridWeek,listWeek',
     },
     navLinks: true, // can click day/week names to navigate views
     editable: false,
