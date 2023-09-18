@@ -11,10 +11,13 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import translateID from '@fullcalendar/core/locales/id'
 
 document.addEventListener('DOMContentLoaded', async function () {
+
+  // ubah homeUrl menjadi empty string jika mau menjalankan 'go build .'
   const homeUrl = 'http://127.0.0.1:8090';
   const calendarEl = document.getElementById('calendar');
   let keteranganEl = document.getElementById('listKeterangan');
 
+  // tarik data nama ruangan dan keterangan warna
   fetch(`${homeUrl}/api/collections/ruangan/records?page=1&perPage=500`)
   .then((response) => {
     return response.json()
@@ -29,6 +32,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     alert(err)
   })
 
+  // FullCalendar setting
   const calendar = new Calendar(calendarEl, {
     //contentHeight: 700,
     aspectRatio: 1.8,
@@ -48,10 +52,11 @@ document.addEventListener('DOMContentLoaded', async function () {
       center: 'title',
       right: 'multiMonthYear,dayGridMonth,timeGridWeek,listWeek',
     },
-    navLinks: true, // can click day/week names to navigate views
+    navLinks: true,
     editable: false,
-    dayMaxEvents: true, // allow "more" link when too many events
+    dayMaxEvents: true,
     
+    // tarik data event dari pocketbase
     events: function (info, successCallback, failureCallback){
       const rentangAwal = info.start.toISOString().slice(0,10);
       const rentangAkhir = info.end.toISOString().slice(0,10);
