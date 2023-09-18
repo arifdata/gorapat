@@ -10,8 +10,23 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import translateID from '@fullcalendar/core/locales/id'
 
 document.addEventListener('DOMContentLoaded', async function () {
-
+  const homeUrl = 'http://127.0.0.1:8090';
   const calendarEl = document.getElementById('calendar');
+  let keteranganEl = document.getElementById('listKeterangan');
+
+  fetch(`${homeUrl}/api/collections/ruangan/records?page=1&perPage=500`)
+  .then((response) => {
+    return response.json()
+  })
+  .then((data) => {
+    for (var i=0; i < data.items.length; i++){
+      console.log(data.items[i]);
+      keteranganEl.insertAdjacentHTML('afterbegin', `<li><div id="keterangan" style="background-color: ${data.items[i]['label_warna']};">${data.items[i]['nama']}</div></li>`);
+    }
+  })
+  .catch((err) => {
+    alert(err)
+  })
 
   const calendar = new Calendar(calendarEl, {
     //contentHeight: 700,
@@ -25,6 +40,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       next: 'caret-right-fill',
       today: 'house-fill',
     },
+    initialView: 'dayGridMonth',
     themeSystem: 'bootstrap5',
     headerToolbar: {
       left: 'prev next today',
@@ -38,7 +54,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     events: function (info, successCallback, failureCallback){
       const rentangAwal = info.start.toISOString().slice(0,10);
       const rentangAkhir = info.end.toISOString().slice(0,10);
-      fetch(`http://localhost:8090/api/collections/event/records?page=1&perPage=500&filter=start%20%3E%3D%20%22${rentangAwal}%22%20%26%26%20end%20%3C%3D%20%22${rentangAkhir}%22&expand=ruang`)
+      fetch(`${homeUrl}/api/collections/event/records?page=1&perPage=500&filter=start%20%3E%3D%20%22${rentangAwal}%22%20%26%26%20end%20%3C%3D%20%22${rentangAkhir}%22&expand=ruang`)
       .then((response) => {
         return response.json();
       })

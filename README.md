@@ -1,2 +1,2 @@
 # gorapat
-Reservasi Ruang Rapat Using Golang &amp; Svelte (Work In Progress)
+Reservasi Ruang Rapat Using Golang (backend) &amp; Fullcalendar (frontend)
